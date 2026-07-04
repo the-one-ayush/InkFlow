@@ -87,16 +87,16 @@ export default function DocumentPage() {
         fetchCurrentUser();
     }, []);
 
-    const saveDocument = useCallback( async (newContent: object) => {
-        if (!docData) return;
+    const saveDocument= useCallback(async () => {
+        if (!docData || !editor) return;
 
         try {
-            await api.patch(`/documents/${docData.id}`, {title, content: newContent,});
+            await api.patch(`/documents/${docData.id}`, {title, content: editor.getJSON(),});
             setSaveStatus("saved");
         } catch (error) {
             console.error(error);
         }
-    }, [docData, title]);
+    }, [docData, title, editor]);
 
     const handleDelete= async () => {
         if (!confirm("Delete this document?")) {
@@ -118,12 +118,13 @@ export default function DocumentPage() {
         if (!hasChanges) return;
 
         const timer = setTimeout(() => {
-            saveDocument(content);
+             if (!editor) return;
+            saveDocument();
             setHasChanges(false);
         }, 1000);
 
         return () => clearTimeout(timer);
-    }, [canEdit, content, title, hasChanges, saveDocument,]);
+    }, [canEdit, title, editor, hasChanges, saveDocument,]);
 
     
 
