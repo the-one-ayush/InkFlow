@@ -1,0 +1,37 @@
+.toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    justify-content:center;
+}
+
+.button {
+    border: none;
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.button:hover {
+    background: #ececec;
+}
+
+.active {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+.button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background: #e5e7eb;
+    margin: 0 4px;
+}

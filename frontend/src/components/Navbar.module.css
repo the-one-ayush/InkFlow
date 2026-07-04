@@ -1,0 +1,102 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+    background: rgb(0, 0, 21);
+    border-bottom: 1px solid #ececec;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.status {
+    color: #e7e7e7;
+    font-size: 15px;
+}
+
+.button {
+    border: none;
+    background: #c8d1e3;
+    color: black;
+    font-family: inherit;
+    font-weight: 500;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.button:hover {
+    opacity: .9;
+    background: #f9fafb;
+    color: #4f46e5;
+}
+
+.onlineSection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 28px;
+}
+
+.onlineLabel {
+    color: #f5f9ff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #f5f9ff;
+    font-size: 14px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+.empty {
+    color: #9ca3af;
+}
+
+.deleteButton {
+    height: 40px;
+    padding: 0 18px;
+    border: 1px solid rgb(164, 64, 64);
+    border-radius: 8px;
+    background: rgb(164, 64, 64);
+    color: white;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.deleteButton:hover {
+    background: #fef2f2;
+    color: red;
+}

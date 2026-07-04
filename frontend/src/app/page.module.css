@@ -1,0 +1,158 @@
+.page {
+    min-height: 100vh;
+    background: #f5f7fb;
+    color: #111827;
+    font-family: "Geist", sans-serif;
+}
+
+.page, .page * {
+    font-family: "Geist", sans-serif;
+}
+
+
+.navbar {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    border-bottom: 1px solid #e5e7eb;
+    background: white;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.navActions {
+    display: flex;
+    gap: 14px;
+}
+
+
+.primaryButton, .secondaryButton {
+    height: 44px;
+    padding: 0 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .2s ease,  border-color .2s ease;
+}
+
+.primaryButton {
+    border: none;
+    background: #111827;
+    color: white;
+}
+
+.primaryButton:hover {
+    background: #374151;
+}
+
+.secondaryButton {
+    background: white;
+    color: #111827;
+    border: 1px solid #d1d5db;
+}
+
+.secondaryButton:hover {
+    background: #f3f4f6;
+}
+
+
+.hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 24px 80px;
+    text-align: center;
+}
+
+.heroTitle {
+    font-size: clamp(3rem, 7vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.06em;
+    font-weight: 700;
+}
+
+.heroSubtitle {
+    margin: 28px auto 0;
+    max-width: 650px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #6b7280;
+}
+
+.heroButtons {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.features {
+    max-width: 1200px;
+    margin: 40px auto 100px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.featureCard {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 28px;
+    transition: border-color .2s ease, background-color .2s ease;
+}
+
+.featureCard:hover {
+    border-color: #9ca3af;
+    background: #fafafa;
+}
+
+.featureCard h3 {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+}
+
+.featureCard p {
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+.loading {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #6b7280;
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .hero {
+        padding-top: 80px;
+    }
+
+    .heroButtons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .heroButtons button {
+        width: 100%;
+    }
+
+    .logo {
+        font-size: 1.7rem;
+    }
+}

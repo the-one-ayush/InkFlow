@@ -1,0 +1,43 @@
+.ProseMirror {
+    min-height: 500px;
+    outline: none;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #222;
+}
+ 
+
+.ProseMirror p {
+    margin: 12px 0;
+}
+
+.ProseMirror h1 {
+    font-size: 34px;
+}
+
+.ProseMirror h2 {
+    font-size: 28px;
+}
+
+.ProseMirror ul, .ProseMirror ol {
+    padding-left: 30px;
+}
+
+.ProseMirror :global(.ProseMirror) {
+    min-height: 500px;
+    outline: none !important;
+    box-shadow: none !important;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #222;
+}
+
+.ProseMirror :global(.ProseMirror:focus) {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.ProseMirror :global(.ProseMirror-focused) {
+    outline: none !important;
+    box-shadow: none !important;
+}

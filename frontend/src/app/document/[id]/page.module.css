@@ -1,0 +1,31 @@
+.container {
+    min-height: 100vh;
+    background: #f7f8fa;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.editorWrapper {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    padding: 40px;
+}
+
+.titleInput {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+.titleInput::placeholder {
+    color: #9ca3af;
+}
