@@ -2,7 +2,7 @@
 
 A full-stack real-time collaborative document editor. InkFlow allows multiple users to create, edit, and share rich-text documents with role-based access control and live collaboration.
 
-## ✨ Features
+## Features
 
 - 🔐 JWT Authentication
 - 📄 Create, edit, and delete documents
