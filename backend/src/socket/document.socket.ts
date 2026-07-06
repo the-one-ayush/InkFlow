@@ -55,7 +55,7 @@ export const registerDocumentEvents= (io: Server, socket: Socket) => {
 
 
     socket.on("send-changes", (data: DocumentChangeData) => {
-            io.to(data.documentId).emit("receive-changes", data.content);
+            socket.to(data.documentId).emit("receive-changes", data.content);
         }
     );
 

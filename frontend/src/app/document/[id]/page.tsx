@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import styles from "./page.module.css";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -30,7 +30,7 @@ export default function DocumentPage() {
     const params= useParams<{ id: string }>();
     const router= useRouter();
     const [docData, setDocData]= useState<Doc | null>(null);
-    const [content, setContent]= useState<object>({});
+    const contentInitialized= useRef(false);
     const [title, setTitle]= useState("");
     const [hasChanges, setHasChanges]= useState(false);
     const [saveStatus, setSaveStatus]= useState<"saved" | "saving">("saved");
@@ -41,13 +41,12 @@ export default function DocumentPage() {
 
     const editor = useEditor({
         extensions: [StarterKit],
-        editable: canEdit,
-        content,
+        editable: false,
+        immediatelyRender: false,
         onUpdate: ({ editor }) => {
             if (!canEdit) return;
 
             const newContent = editor.getJSON();
-            setContent(newContent);
             setHasChanges(true);
             setSaveStatus("saving");
 
@@ -57,16 +56,14 @@ export default function DocumentPage() {
 
     useEffect(() => {
         if (!editor) return;
-        editor.setEditable(canEdit);
+        editor.setEditable(canEdit, false);
     }, [editor, canEdit]);
 
     const fetchDocument= async () => {
         try {
             const response= await api.get(`/documents/${params.id}`);
-
             setDocData(response.data.document);
             setTitle(response.data.document.title);
-            setContent(response.data.document.content);
             setCanEdit(response.data.canEdit);
         } catch (error) {
             console.error(error);
@@ -141,8 +138,12 @@ export default function DocumentPage() {
     }, [params.id, currentUser]);
 
     useEffect(() => {
+        if (!editor) return;
+
         const handleReceiveChanges= (newContent: object) => {
-            setContent(newContent);
+            editor.commands.setContent(newContent, {
+                emitUpdate: false,
+            });
         };
 
         socket.on("receive-changes", handleReceiveChanges);
@@ -150,7 +151,7 @@ export default function DocumentPage() {
         return () => {
             socket.off("receive-changes", handleReceiveChanges);
         };
-    }, []);
+    }, [editor]);
 
     useEffect(() => {
         if (!params.id) return;
@@ -183,14 +184,14 @@ export default function DocumentPage() {
     }, []);
 
     useEffect(() => {
-        if (!editor) return;
+        if (!editor || !docData || contentInitialized.current) return;
 
-        const current = editor.getJSON();
+        contentInitialized.current = true;
+        editor.commands.setContent(docData.content, {
+            emitUpdate: false,
+        });
 
-        if (JSON.stringify(current) !== JSON.stringify(content)) {
-            editor.commands.setContent(content, {emitUpdate: false,});
-        }
-    }, [editor, content]);
+    }, [editor, docData]);
 
     return (
         <AuthGuard>
